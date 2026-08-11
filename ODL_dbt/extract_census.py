@@ -93,16 +93,6 @@ class CensusIngestion:
                         )
                         df = pd.DataFrame(rows, columns=columns)
 
-                        for col in df.columns:
-                            try:
-                                # convert numeric values to float
-                                df[col] = pd.to_numeric(
-                                    df[col], errors="coerce"
-                                )
-                            except Exception:
-                                # if string pass as string
-                                pass
-
                         # Register chunk with duckdb
                         local_db.register("chunk_df", df)
 

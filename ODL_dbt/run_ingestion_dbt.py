@@ -13,7 +13,7 @@ def main():
     )
 
     subprocess.run(
-        ["dbt", "run"],
+        ["dbt", "build"],
         env=os.environ.copy(),
         check=True
     )
