@@ -60,12 +60,17 @@ class CensusIngestion:
                 with conn.cursor() as cursor:
                     logger.info("Executing query on Databricks view...")
                     cursor.execute("""select
-                AcademicYear,
-                CensusTerm as census,
+                AcademicYear as academic_year,
+                CensusTerm as census_term,
+                CensusDate as census_date,
                 URN,
-                la as LA_Number,
-                LAEstab,
-                EnrolStatus
+                la as la_number,
+                LAEstab as la_estab,
+                EnrolStatus as enrol_status,
+                NCYearActual as nc_year_actual,
+                AgeAtStartOfAcademicYear as age_at_start_of_academic_year,
+                FSMeligible as fsm_eligible,
+                SchoolLunchTaken as school_lunch_taken
                 from catalog_30_bronze.tier1.censusseasonssa_masterview
                 WHERE AcademicYear IN (202122, 202425)
                 AND LA IN (201,202, 203)
@@ -73,6 +78,8 @@ class CensusIngestion:
                         CensusDate BETWEEN DATE '2022-01-01' AND DATE '2022-01-31'
                         OR
                         CensusDate BETWEEN DATE '2025-01-01' AND DATE '2025-01-31'
+                        OR
+                        CensusDate BETWEEN DATE '2021-10-01' AND DATE '2021-10-31'
                     )
                 """)  # noqa: E501
 
