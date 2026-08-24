@@ -2,7 +2,7 @@ with raw_csv as (
 
     select * 
     from read_csv(
-        'raw_data/edubase_all_fields.csv',
+        'raw_data/gias.csv',
         header = true,
         escape = '"',
         strict_mode = false,
