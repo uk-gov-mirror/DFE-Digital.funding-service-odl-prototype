@@ -119,3 +119,5 @@ Thumbs.db
 target/
 dbt_packages/
 logs/
+
+raw_data/
